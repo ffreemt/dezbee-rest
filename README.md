@@ -5,14 +5,23 @@
 
 ## python 3.8 only
 
+
 ## Install it
 
+### For Windows
 ```shell
 pip install dezrest
 # pip install git+https://github.com/ffreemt/dezbee-rest
 # poetry add git+https://github.com/ffreemt/dezbee-rest
 # git clone https://github.com/ffreemt/dezbee-rest && cd dezbee-rest
 ```
+
+### For Linux and friends
+The `fasttext`, `pycld2` and `pyicu` can be installed normally. Clone the repo, run
+```
+poetry export -f requirements.text -o requirements.txt
+```
+and replace the whl for `fasttext`, `pycld2` and `pyicu`
 
 ## Use it
 

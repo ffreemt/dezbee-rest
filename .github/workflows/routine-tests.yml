@@ -26,6 +26,7 @@ jobs:
         # if: matrix.os == 'windows-latest'
         run: | 
           # poetry run pip install -r requirements.txt
+          poetry lock --no-update
           poetry install
           poetry run pip install flake8 pytest
       - name: Run flake8

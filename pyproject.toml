@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "dezrest"
 version = "0.1.0"
-description = "serve ezbee/dz/de bee via sanic rest"
+description = "serve ez/dz/de bee via FastAPI rest"
 authors = ["ffreemt <yucongo+fmt@gmail.com>"]
 readme = "README.md"
 packages = [{include = "dezbee_rest"}]

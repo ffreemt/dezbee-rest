@@ -5,23 +5,27 @@ Serve [de|ez|dz]bee via FastAPI port 6666
 
 ## python 3.8 only
 
+## Pre-install
+* fasttext
+  * `pip install fasttext` (linux) or `pip install fasttext*whl` (Windows)
+* pycld2, PyICU
+  * e.g. `poetry run pip install pycld2-0.41-cp38-cp38-win_amd64.wh PyICU-2.9-cp38-cp38-win_amd64.whl` 
+* polyglot fix:
+  * `poetry run pip install -U git+https://github.com/aboSamoor/polyglot.git@master` or
+  *  `pip install artifects\polyglot-16.7.4.tar.gz` (modified cloned polyglot: futures removed from requirements.txt)
+* scikit-learn (for deprecated sklearn used in some packages) and pybind11 (for Windows)
+
+Refer to [workflows](https://github.com/ffreemt/dezbee-rest/blob/main/.github/workflows/routine-tests.yml)
 
 ## Install it
 
-### For Windows
+##
 ```shell
 pip install dezrest
 # pip install git+https://github.com/ffreemt/dezbee-rest
 # poetry add git+https://github.com/ffreemt/dezbee-rest
 # git clone https://github.com/ffreemt/dezbee-rest && cd dezbee-rest
 ```
-
-### For Linux and friends
-The `fasttext`, `pycld2` and `pyicu` can be installed normally. Clone the repo, run
-```
-poetry export -f requirements.text -o requirements.txt
-```
-and replace the whl for `fasttext`, `pycld2` and `pyicu`
 
 ## Use it
 
@@ -32,3 +36,9 @@ python -m dezrest
 # docs
 http://127.0.0.1:5555/docs
 ```
+
+## Notes to self
+```
+poetry export --without-hashes -f requirements.txt -o requirements.txt
+```
+Remove or comment out the `fasttext` line

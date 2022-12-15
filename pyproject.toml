@@ -2,9 +2,11 @@
 name = "dezrest"
 version = "0.1.0"
 description = "serve ez/dz/de bee via FastAPI rest"
-authors = ["ffreemt <yucongo+fmt@gmail.com>"]
+authors = ["ffreemt"]
+license = "MIT"
 readme = "README.md"
-packages = [{include = "dezbee_rest"}]
+repository = "https://github.com/ffreemt/dezbee-rest"
+# packages = [{include = "dezbee_rest"}]
 
 [tool.poetry.dependencies]
 python = "^3.8.3"

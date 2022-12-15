@@ -1,6 +1,6 @@
 r"""Serve ezbee via post port default 5555.
 
-```bash 
+```bash
 In: [str, str]
 Out: List[Tuple[str, str, str]]
 
@@ -26,27 +26,36 @@ r.data
 // { res: [ [ 'a', 'b', '' ], [ 'c', 'c', '0.5' ] ] }
 ```
 """
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name, too-few-public-methods
 # sanic sanic-app:app or sanic sanic-app.app
 # http://127.0.0.1:8000
 # from icecream import ic
-# pylint: disable=invalid-name
-import json
+# pylint: disable=invalid-name, no-name-in-module, unused-import
+# import json
 import os
-import sys
-from argparse import Namespace  # from types import SimpleNamespace
-from pathlib import Path
 
 # import signal
 # from signal import SIG_DFL, SIGINT, signal
-from typing import List, Optional, Tuple, Union
+from typing import List, Tuple, Union
 
 import logzero
 import uvicorn
+
+# from time import sleep
+from ezbee import ezbee
+from ezbee.gen_pairs import gen_pairs
+from ezbee.save_xlsx_tsv_csv import save_xlsx_tsv_csv
+from fastapi import FastAPI
 from logzero import logger
+from pydantic import BaseModel
 from set_loglevel import set_loglevel
 
-logzero.loglevel(set_loglevel())
+from dezrest import __version__
+
+# import sys
+# from argparse import Namespace  # from types import SimpleNamespace
+# from pathlib import Path
+
 
 # from sanic.log import logger
 
@@ -54,14 +63,8 @@ logzero.loglevel(set_loglevel())
 # from sanic.response import text
 # from sanic.exceptions import ServerError, NotFound
 
-# from time import sleep
-from ezbee import ezbee
-from ezbee.gen_pairs import gen_pairs
-from ezbee.save_xlsx_tsv_csv import save_xlsx_tsv_csv
-from fastapi import FastAPI
-from pydantic import BaseModel
 
-from dezrest import __version__
+logzero.loglevel(set_loglevel())
 
 # app = Sanic("MyHelloWorldApp")
 debug = True
@@ -85,10 +88,10 @@ async def hello_world():
 
 class Texts(BaseModel):
     """Define request body (not used)."""
-    
+
     # text1: str
     # text2: str
-    __root_: Tuple[str, str]
+    __root__: Tuple[str, str]
 
 
 class ThreeCols(BaseModel):
@@ -134,14 +137,14 @@ def on_post(texts: Tuple[str, str]):
 
     logger.debug("aligned_pairs[:5]: %s", aligned_pairs[:5])
 
-    return aligned_pairs
-
     _ = """
     return [
         ['a', 'b', ''],
         ['c', 'd', .5],
     ]
     # """
+
+    return aligned_pairs
 
 
 if __name__ == "__main__":
@@ -156,15 +159,18 @@ if __name__ == "__main__":
 
     # uvicorn app:app --host 0.0.0.0 --port 5555
     # curl http://127.0.0.1:5555
-    # curl -XPOST http://127.0.0.1:5555/post/ -H "accept: application/json" -H "Content-Type: application/json" -d "{\"text1\": \"a b c\", \"text2\": \"d e f\"}"
-    
+    # curl -XPOST http://127.0.0.1:5555/post/ -H "accept: application/json"
+    # -H "Content-Type: application/json" -d "{\"text1\": \"a b c\", \"text2\": \"d e f\"}"
+
     if set_loglevel() <= 10:
         reload = True
         workers = 1
     else:
         reload = False
         workers = 2
-        
+
+    logger.info(" pid: %s ", os.getcwd())
+
     uvicorn.run(
         "dezrest.__main__:app",
         # host='0.0.0.0',

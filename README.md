@@ -36,9 +36,3 @@ python -m dezrest
 # docs
 http://127.0.0.1:5555/docs
 ```
-
-## Notes to self
-```
-poetry export --without-hashes -f requirements.txt -o requirements.txt
-```
-Remove or comment out the `fasttext` line

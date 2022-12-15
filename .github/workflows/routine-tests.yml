@@ -11,8 +11,8 @@ jobs:
         python-version: [3.8]
         poetry-version: [1.2.1]
         # os: [ubuntu-18.04, macos-latest, windows-latest]
-        os: [windows-latest]
-        # os: [ubuntu-18.04, windows-latest]
+        # os: [windows-latest]
+        os: [ubuntu-18.04, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -22,6 +22,18 @@ jobs:
       - uses: abatilo/actions-poetry@v2.0.0
         with:
           poetry-version: ${{ matrix.poetry-version }}
+      - name: Pre-install fastext pycld2 pyicu polyglot
+        run: |
+          if [ "$RUNNER_OS" == "Windows" ]; then
+            poetry run pip install https://github.com/ffreemt/ezbee/raw/main/data/artifects/fasttext-0.9.2-cp38-cp38-win_amd64.whl
+            poetry run pip install https://github.com/ffreemt/ezbee/raw/main/data/artifects/pycld2-0.41-cp38-cp38-win_amd64.whl
+            poetry run pip install https://github.com/ffreemt/ezbee/raw/main/data/artifects/PyICU-2.8.1-cp38-cp38-win_amd64.whl
+            poetry run pip install pybind11
+          else
+            poetry run pip install fasttext pycld2 pyicu
+          fi
+          poetry run pip install https://github.com/ffreemt/ezbee/raw/main/data/artifects/polyglot-16.7.4.tar.gz
+        shell: bash
       - name: Install packages
         # if: matrix.os == 'windows-latest'
         run: | 

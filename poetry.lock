@@ -222,22 +222,6 @@ pybind11 = ">=2.2"
 setuptools = ">=0.7.0"
 
 [[package]]
-name = "fasttext"
-version = "0.9.2"
-description = "fasttext Python bindings"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-numpy = "*"
-pybind11 = ">=2.2"
-setuptools = ">=0.7.0"
-
-[package.source]
-type = "url"
-url = "https://github.com/ffreemt/ezbee/raw/main/data/artifects/fasttext-0.9.2-cp38-cp38-win_amd64.whl"
-[[package]]
 name = "h11"
 version = "0.14.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -461,25 +445,6 @@ python-versions = ">=3.6"
 global = ["pybind11-global (==2.10.1)"]
 
 [[package]]
-name = "pycld2"
-version = "0.41"
-description = "Python bindings around Google Chromium's embedded compact language detection library (CLD2)"
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
-name = "pycld2"
-version = "0.41"
-description = "Python bindings around Google Chromium's embedded compact language detection library (CLD2)"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.source]
-type = "url"
-url = "https://github.com/ffreemt/ezbee/raw/main/data/artifects/pycld2-0.41-cp38-cp38-win_amd64.whl"
-[[package]]
 name = "pydantic"
 version = "1.10.2"
 description = "Data validation and settings management using python type hints"
@@ -504,25 +469,6 @@ python-versions = ">=3.6"
 
 [package.extras]
 plugins = ["importlib-metadata"]
-
-[[package]]
-name = "PyICU"
-version = "2.8.1"
-description = "Python extension wrapping the ICU C++ API"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.source]
-type = "url"
-url = "https://github.com/ffreemt/ezbee/raw/main/data/artifects/PyICU-2.8.1-cp38-cp38-win_amd64.whl"
-[[package]]
-name = "PyICU"
-version = "2.10.2"
-description = "Python extension wrapping the ICU C++ API"
-category = "main"
-optional = false
-python-versions = "*"
 
 [[package]]
 name = "pytest"
@@ -862,7 +808,7 @@ python-versions = ">=3.4"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8.3"
-content-hash = "d98b08271657f2907be67a7a52e07963b5f76b5f9d2d4826b26b3556c555c878"
+content-hash = "0e877ec4d1bc2779225c82845584c72d42c092e9fef6d03b6e35667c5b286c84"
 
 [metadata.files]
 aiofiles = [
@@ -1285,9 +1231,6 @@ pybind11 = [
     {file = "pybind11-2.10.1-py3-none-any.whl", hash = "sha256:ebf3eeac46859a2e10077ae45378ba3f33d999a9064697a3464fba1a4a04fc0a"},
     {file = "pybind11-2.10.1.tar.gz", hash = "sha256:c9571b8a6607c8e90ea156a2a455383b9911f89da414e9f5e251ab58dc3e3c71"},
 ]
-pycld2 = [
-    {file = "pycld2-0.41.tar.gz", hash = "sha256:a42f6e974df8fdd70685c2baa8a9f523069a260e1140ce604fb9f1fb6c3064df"},
-]
 pydantic = [
     {file = "pydantic-1.10.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:bb6ad4489af1bac6955d38ebcb95079a836af31e4c4f74aba1ca05bb9f6027bd"},
     {file = "pydantic-1.10.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:a1f5a63a6dfe19d719b1b6e6106561869d2efaca6167f84f5ab9347887d78b98"},
@@ -1329,9 +1272,6 @@ pydantic = [
 Pygments = [
     {file = "Pygments-2.13.0-py3-none-any.whl", hash = "sha256:f643f331ab57ba3c9d89212ee4a2dabc6e94f117cf4eefde99a0574720d14c42"},
     {file = "Pygments-2.13.0.tar.gz", hash = "sha256:56a8508ae95f98e2b9bdf93a6be5ae3f7d8af858b43e02c5a2ff083726be40c1"},
-]
-PyICU = [
-    {file = "PyICU-2.10.2.tar.gz", hash = "sha256:0c3309eea7fab6857507ace62403515b60fe096cbfb4f90d14f55ff75c5441c1"},
 ]
 pytest = [
     {file = "pytest-7.2.0-py3-none-any.whl", hash = "sha256:892f933d339f068883b6fd5a459f03d85bfcb355e4981e146d2c7616c21fef71"},

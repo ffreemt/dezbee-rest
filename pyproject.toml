@@ -30,3 +30,21 @@ pytest = "^7.2.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+memo = "echo poe test or poetry run poe test"
+test = "pytest tests"
+pyright = "pyright dezmq"
+flake8 = "flake8 dezmq --ignore F401,E501,F841"
+check = ["pyright", "flake8"]
+export = "poetry export --without-hashes -f requirements.txt -o requirements.txt"
+build = "poetry build"
+publish = "poetry publish"
+release = ["test", "build", "publish"]
+lint = { cmd = "pylint dezmq" }
+isort = "isort tests dezmq"
+black = "black tests dezmq"
+format = ["isort", "black"]
+docstyle = "pydocstyle --convention=google tests dezmq"
+prerelease = {cmd = "poetry version prerelease && sync-version"}
+tunnel = {cmd = "ssh -CN ip_or_hostname_defined_in_hosts -L 9091:127.0.0.1:9091"}

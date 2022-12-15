@@ -38,8 +38,9 @@ jobs:
       - name: Install packages
         # if: matrix.os == 'windows-latest'
         run: | 
-          # poetry run pip install -r requirements.txt
-          poetry install
+          # poetry export --without-hashes -f requirements.txt -o requirements.txt && remove/comment fasttext
+          poetry run pip install -r requirements.txt
+          # poetry install
           poetry run pip install flake8 pytest
       - name: Run flake8
         run: |

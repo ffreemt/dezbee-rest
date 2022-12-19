@@ -29,6 +29,8 @@ pytest = "^7.2.0"
 [tool.poetry.scripts]
 "dezrest" = "dezrest.__main__:app_typer"
 
+# python -c "import sys; from dezrest.__main__ import app_typer; sys.exit(app_typer())"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

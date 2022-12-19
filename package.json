@@ -1,0 +1,15 @@
+{
+  "name": "dezbee-rest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ffreemt/dezbee-rest.git",
+  "author": "ffreemt",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "husky": "^8.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
+}

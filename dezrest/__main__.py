@@ -36,9 +36,10 @@ import os
 
 # import signal
 # from signal import SIG_DFL, SIGINT, signal
-from typing import List, Tuple, Union
+from typing import List, Optional, Tuple, Union
 
 import logzero
+import typer
 import uvicorn
 
 # from time import sleep
@@ -67,14 +68,26 @@ from dezrest import __version__
 logzero.loglevel(set_loglevel())
 
 # app = Sanic("MyHelloWorldApp")
-debug = True
-port = 5555
+# debug = True
+# port = 5555
 
 app = FastAPI(
     title="dezbee-rest",
     version=__version__,
     description=f"{__doc__}",
 )
+
+app_typer = typer.Typer(
+    name="dezrest",
+    add_completion=False,
+    help="serve ez/de/dzbee via rest default port 5555",
+)
+
+
+def _version_callback(value: bool) -> None:
+    if value:
+        typer.echo(f"{app.info.name} v.{__version__} -- ...")
+        raise typer.Exit()
 
 
 @app.get("/")
@@ -147,6 +160,44 @@ def on_post(texts: Tuple[str, str]):
     return aligned_pairs
 
 
+@app_typer.command()
+def main(
+    host: str = "127.0.0.1",
+    port: int = 5555,
+    version: Optional[bool] = typer.Option(  # pylint: disable=(unused-argument
+        None,
+        "--version",
+        "-v",
+        "-V",
+        help="Show version info and exit.",
+        callback=_version_callback,
+        is_eager=True,
+    ),
+):
+    if set_loglevel() <= 10:
+        reload = True
+        workers = 1
+    else:
+        reload = False
+        workers = 2
+
+    logger.info(" pid: %s ", os.getcwd())
+
+    uvicorn.run(
+        # app,
+        "dezrest.__main__:app",
+        # host='0.0.0.0',
+        # host='127.0.0.1',
+        host=host,
+        port=port,
+        reload=reload,
+        workers=workers,
+        # debug=True,
+        timeout_keep_alive=300,
+        # log_level=10,
+    )
+
+
 if __name__ == "__main__":
     # sanic sanic-app:app -p 7777 --debug --workers=2
     # or python sanic-app.py  # production-mode
@@ -162,23 +213,4 @@ if __name__ == "__main__":
     # curl -XPOST http://127.0.0.1:5555/post/ -H "accept: application/json"
     # -H "Content-Type: application/json" -d "{\"text1\": \"a b c\", \"text2\": \"d e f\"}"
 
-    if set_loglevel() <= 10:
-        reload = True
-        workers = 1
-    else:
-        reload = False
-        workers = 2
-
-    logger.info(" pid: %s ", os.getcwd())
-
-    uvicorn.run(
-        "dezrest.__main__:app",
-        # host='0.0.0.0',
-        # host='127.0.0.1',
-        port=port,
-        # reload=True,
-        workers=2,
-        # debug=True,
-        # timeout_keep_alive65,
-        # log_level=10,
-    )
+    app_typer()

@@ -9,7 +9,7 @@ Serve [de|ez|dz]bee via FastAPI port 6666
 * fasttext
   * `pip install fasttext` (linux) or `pip install fasttext*whl` (Windows)
 * pycld2, PyICU
-  * e.g. `poetry run pip install pycld2-0.41-cp38-cp38-win_amd64.wh PyICU-2.9-cp38-cp38-win_amd64.whl` 
+  * e.g. `poetry run pip install pycld2-0.41-cp38-cp38-win_amd64.wh PyICU-2.9-cp38-cp38-win_amd64.whl`
 * polyglot fix:
   * `poetry run pip install -U git+https://github.com/aboSamoor/polyglot.git@master` or
   *  `pip install artifects\polyglot-16.7.4.tar.gz` (modified cloned polyglot: futures removed from requirements.txt)
@@ -33,6 +33,21 @@ pip install dezrest
 # sart the server at port 5555 via `uvicorn` with 2 workers
 python -m dezrest
 
-# docs
+# or
+dezrest
+
+# or run at external IP
+python -m dezrest --host 0.0.0.0
+
+# or dezrest --host 0.0.0.0
+
+# cli help
+python -m dezrest --help
+
+or
+dezrest --help
+
+# REST docs (Swagger UI)
 http://127.0.0.1:5555/docs
+
 ```

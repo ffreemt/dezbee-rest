@@ -24,6 +24,16 @@ var r = await axios.post(`http://127.0.0.1:5555/post/`, { text1: 'a', text2: 'b'
 var r = await axios.post(`http://127.0.0.1:5555/post/`, { texts: ['a', 'b'] })
 r.data
 // { res: [ [ 'a', 'b', '' ], [ 'c', 'c', '0.5' ] ] }
+
+Modified accordingly (remove text1, text2 and used list directly):
+httpx.post("http://127.0.0.1:5555/post/", json=['a', 'b']).json()
+# Out: [['a', 'b', '0.0']]
+
+httpx.post("http://127.0.0.1:5555/post/", json=['test\nlove', '没有\n测试\n爱']).json()
+# Out: [['', '没有', ''], ['test', '测试', '0.74'], ['love', '爱', '0.86']]
+
+httpx.post("http://127.0.0.1:5555/post/", json=['test\nlove', '没有\n测试\n其他\n爱']).json()
+# Out: [['', '没有', ''], ['test', '测试', '0.75'], ['', '其他', ''], ['love', '爱', '0.87']]
 ```
 """
 # pylint: disable=invalid-name, too-few-public-methods
@@ -57,7 +67,6 @@ from dezrest import __version__
 # from argparse import Namespace  # from types import SimpleNamespace
 # from pathlib import Path
 
-
 # from sanic.log import logger
 
 # from sanic import Sanic, response
@@ -86,7 +95,7 @@ app_typer = typer.Typer(
 
 def _version_callback(value: bool) -> None:
     if value:
-        typer.echo(f"{app.info.name} v.{__version__} -- ...")
+        typer.echo(f"{app.title} v.{__version__} -- ...")
         raise typer.Exit()
 
 
@@ -162,8 +171,18 @@ def on_post(texts: Tuple[str, str]):
 
 @app_typer.command()
 def main(
-    host: str = "127.0.0.1",
-    port: int = 5555,
+    host: str = typer.Option(  # pylint: disable=(unused-argument
+        "127.0.0.1",
+        "--host",
+        "-h",
+        help="Set host, e.g., 0.0.0.0, or an external IP.",
+    ),
+    port: int = typer.Option(
+        5555,
+        "--port",
+        "-p",
+        help="Set port that is not currently in use.",
+    ),
     version: Optional[bool] = typer.Option(  # pylint: disable=(unused-argument
         None,
         "--version",
@@ -174,6 +193,7 @@ def main(
         is_eager=True,
     ),
 ):
+    """Run the whole thing."""
     if set_loglevel() <= 10:
         reload = True
         workers = 1

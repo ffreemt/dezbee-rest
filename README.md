@@ -7,7 +7,7 @@ Serve ezbee via FastAPI port 6666
 [de|dz]bee may be supported later
 
 ## Pre-install for Windows without C++ environment
-Ignore this step if your system has C++, e.g., Visual Studio or mingw
+Skip this step if your system has C++, e.g., Visual Studio or mingw or g++ etc.
 
 * fasttext
   * `pip install fasttext` (linux) or `pip install fasttext*whl` (Windows)

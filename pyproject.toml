@@ -35,6 +35,9 @@ pytest = "^7.2.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.black]
+skip-string-normalization = 0
+
 [tool.poe.tasks]
 memo = "echo poe test or poetry run poe test"
 test = "pytest tests"

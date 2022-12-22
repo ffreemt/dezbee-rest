@@ -31,6 +31,7 @@ pip install dezrest
 # git clone https://github.com/ffreemt/dezbee-rest && cd dezbee-rest
 ```
 
+### Python virutal environment (Optional)
 You may wish to create a python virutal environment first, e.g.,
 ```
 mkdir temp-dir && cd temp-dir
@@ -38,6 +39,27 @@ py -3.8 -m venv .venv
 call .venv\Scripts\activate
 pip install dezrest
 ```
+
+## Post- or Pre-install (same as for ezbee)
+```
+pip install fastext
+pip install pyicu==2.8 pycld2
+pip install https://github.com/ffreemt/ezbee/raw/main/data/artifects/polyglot-16.7.4.tar.gz
+```
+In linux/macos, you may need to run (if the required packages are not already present in the system) something similar to
+```
+apt install libicu-dev
+
+# or for macos
+brew install icu4c
+brew link icu4c --force
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig"
+export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include"
+```
+
+Refer to the `pre-install` part in workflow file [`routine-tests.yml`](https://github.com/ffreemt/dezbee-rest/blob/main/.github/workflows/routine-tests.yml)
+
 
 ## Use it
 
@@ -85,9 +107,9 @@ INFO:     Application shutdown complete.
 INFO:     Finished server process [547296]
 ```
 
-To kill the server, kill the parent process (CTRL+C does not quite work), e.g.
+To kill the server in Windows, kill the parent process (CTRL+C does not quite work in Windows at least), e.g.
 ```
-taskkill /f /pid 486952 /pid 548488
+taskkill /f /pid 486952
 ```
 
 ### Test the REST API:

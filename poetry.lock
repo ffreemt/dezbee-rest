@@ -31,17 +31,19 @@ test = ["astroid", "pytest"]
 
 [[package]]
 name = "attrs"
-version = "22.1.0"
+version = "22.2.0"
 description = "Classes Without Boilerplate"
 category = "dev"
 optional = false
-python-versions = ">=3.5"
+python-versions = ">=3.6"
 
 [package.extras]
-dev = ["cloudpickle", "coverage[toml] (>=5.0.2)", "furo", "hypothesis", "mypy (>=0.900,!=0.940)", "pre-commit", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "sphinx", "sphinx-notfound-page", "zope.interface"]
-docs = ["furo", "sphinx", "sphinx-notfound-page", "zope.interface"]
-tests = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "zope.interface"]
-tests_no_zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy (>=0.900,!=0.940)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins"]
+cov = ["attrs[tests]", "coverage-enable-subprocess", "coverage[toml] (>=5.3)"]
+dev = ["attrs[docs,tests]"]
+docs = ["furo", "myst-parser", "sphinx", "sphinx-notfound-page", "sphinxcontrib-towncrier", "towncrier", "zope.interface"]
+tests = ["attrs[tests-no-zope]", "zope.interface"]
+tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=0.971,<0.990)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
+tests_no_zope = ["cloudpickle", "hypothesis", "mypy (>=0.971,<0.990)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
 
 [[package]]
 name = "cchardet"
@@ -64,7 +66,7 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
 name = "cmat2aset"
-version = "0.1.0a7"
+version = "0.1.0"
 description = "correlation matrix to align set "
 category = "main"
 optional = false
@@ -76,7 +78,7 @@ install = ">=1.3.5,<2.0.0"
 logzero = ">=1.7.0,<2.0.0"
 numpy = ">=1.22.3,<2.0.0"
 pandas = ">=1.4.1,<2.0.0"
-sklearn = ">=0.0,<0.1"
+scikit-learn = ">=1.2.0,<2.0.0"
 
 [[package]]
 name = "colorama"
@@ -128,7 +130,7 @@ tests = ["asttokens", "littleutils", "pytest", "rich"]
 
 [[package]]
 name = "ezbee"
-version = "0.1.2"
+version = "0.1.3"
 description = "english-chinese dualtext aligner"
 category = "main"
 optional = false
@@ -136,9 +138,9 @@ python-versions = ">=3.8.3,<4.0.0"
 
 [package.dependencies]
 cchardet = ">=2.1.7,<3.0.0"
-cmat2aset = "0.1.0a7"
+cmat2aset = ">=0.1.0,<0.2.0"
 environs = ">=9.5.0,<10.0.0"
-fast-scores = "0.1.3a3"
+fast-scores = ">=0.1.3,<0.2.0"
 icecream = ">=2.1.1,<3.0.0"
 install = ">=1.3.5,<2.0.0"
 Jinja2 = ">=3.1.1,<4.0.0"
@@ -152,7 +154,7 @@ plot = ["holoviews (>=1.14.8,<2.0.0)", "plotly (>=5.6.0,<6.0.0)", "seaborn (>=0.
 
 [[package]]
 name = "fast-scores"
-version = "0.1.3a3"
+version = "0.1.3"
 description = " "
 category = "main"
 optional = false
@@ -160,12 +162,13 @@ python-versions = ">=3.8,<4.0"
 
 [package.dependencies]
 cchardet = ">=2.1.7,<3.0.0"
-fastlid = ">=0.1.7,<0.2.0"
+fastlid = ">=0.1.9,<0.2.0"
 joblib = ">=1.0.1,<2.0.0"
 logzero = ">=1.7.0,<2.0.0"
 msgpack = ">=1.0.2,<2.0.0"
 nltk = ">=3.6.2,<4.0.0"
 numpy = ">=1.21.0,<2.0.0"
+scikit-learn = ">=1.2.0,<2.0.0"
 simplemma = ">=0.3.0,<0.4.0"
 sklearn = ">=0.0,<0.1"
 
@@ -189,29 +192,15 @@ test = ["anyio[trio] (>=3.2.1,<4.0.0)", "black (==22.10.0)", "coverage[toml] (>=
 
 [[package]]
 name = "fastlid"
-version = "0.1.8"
+version = "0.1.9"
 description = "Detect languages via a fasttext model"
 category = "main"
 optional = false
 python-versions = ">=3.6,<4.0"
 
 [package.dependencies]
-fasttext = ">=0.9.2,<0.10.0"
 logzero = ">=1.7.0,<2.0.0"
 numpy = ">=1.20.3,<2.0.0"
-
-[[package]]
-name = "fasttext"
-version = "0.9.2"
-description = "fasttext Python bindings"
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-numpy = "*"
-pybind11 = ">=2.2"
-setuptools = ">=0.7.0"
 
 [[package]]
 name = "h11"
@@ -419,14 +408,14 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pybind11"
-version = "2.10.1"
+version = "2.10.2"
 description = "Seamless operability between C++11 and Python"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-global = ["pybind11-global (==2.10.1)"]
+global = ["pybind11-global (==2.10.2)"]
 
 [[package]]
 name = "pydantic"
@@ -567,19 +556,6 @@ python-versions = ">=3.8.3,<4.0.0"
 [package.dependencies]
 environs = ">=9.5.0,<10.0.0"
 logzero = ">=1.7.0,<2.0.0"
-
-[[package]]
-name = "setuptools"
-version = "65.6.3"
-description = "Easily download, build, install, upgrade, and uninstall Python packages"
-category = "main"
-optional = false
-python-versions = ">=3.7"
-
-[package.extras]
-docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-favicon", "sphinx-hoverxref (<2)", "sphinx-inline-tabs", "sphinx-notfound-page (==0.8.3)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
-testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8 (<5)", "flake8-2020", "ini2toml[lite] (>=0.9)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pip (>=19.1)", "pip-run (>=8.8)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-timeout", "pytest-xdist", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
-testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
 
 [[package]]
 name = "simplemma"
@@ -751,7 +727,7 @@ python-versions = ">=3.4"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8.3"
-content-hash = "c6e4d51a7314f79b664da135cd0daed9982814404f13eb15e5107a2b65ab0f09"
+content-hash = "81a335387e44d9c96606e8dcd5c47f7752759c975feb7e621c00f76e6c2f12bf"
 
 [metadata.files]
 anyio = [
@@ -763,8 +739,8 @@ asttokens = [
     {file = "asttokens-2.2.1.tar.gz", hash = "sha256:4622110b2a6f30b77e1473affaa97e711bc2f07d3f10848420ff1898edbe94f3"},
 ]
 attrs = [
-    {file = "attrs-22.1.0-py2.py3-none-any.whl", hash = "sha256:86efa402f67bf2df34f51a335487cf46b1ec130d02b8d39fd248abfd30da551c"},
-    {file = "attrs-22.1.0.tar.gz", hash = "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6"},
+    {file = "attrs-22.2.0-py3-none-any.whl", hash = "sha256:29e95c7f6778868dbd49170f98f8818f78f3dc5e0e37c0b1f474e3561b240836"},
+    {file = "attrs-22.2.0.tar.gz", hash = "sha256:c9227bfc2f01993c03f68db37d1d15c9690188323c067c641f1a35ca58185f99"},
 ]
 cchardet = [
     {file = "cchardet-2.1.7-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:c6f70139aaf47ffb94d89db603af849b82efdf756f187cdd3e566e30976c519f"},
@@ -802,8 +778,8 @@ click = [
     {file = "click-8.1.3.tar.gz", hash = "sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e"},
 ]
 cmat2aset = [
-    {file = "cmat2aset-0.1.0a7-py3-none-any.whl", hash = "sha256:53d9f514b99ed4735994ffc73213b53172fea10cec7633da3c2cb20fb8ce8426"},
-    {file = "cmat2aset-0.1.0a7.tar.gz", hash = "sha256:1d6d494c7658e648eb88e601e69b198e3ce076b34594593db2318fe9e9b466b8"},
+    {file = "cmat2aset-0.1.0-py3-none-any.whl", hash = "sha256:4da06a1ca48efdb8900116f558d23a3e67017b54a02e66114ca0eee566c05554"},
+    {file = "cmat2aset-0.1.0.tar.gz", hash = "sha256:227c222a38ddc95e3e393dc39e178fc9617bc4f5ad1d9bf9bb01e838e4e3f2a1"},
 ]
 colorama = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
@@ -822,23 +798,20 @@ executing = [
     {file = "executing-1.2.0.tar.gz", hash = "sha256:19da64c18d2d851112f09c287f8d3dbbdf725ab0e569077efb6cdcbd3497c107"},
 ]
 ezbee = [
-    {file = "ezbee-0.1.2-py3-none-any.whl", hash = "sha256:31e6fa3a5fbf7e291e6112e244d1134546cc5c6612ce07de0ebc322ad2b71408"},
-    {file = "ezbee-0.1.2.tar.gz", hash = "sha256:c762df2b9f86da00ae990355f193ccce544e75c341a2369a9dbdfd2eb0ff1f8d"},
+    {file = "ezbee-0.1.3-py3-none-any.whl", hash = "sha256:8a626bf24aea173267ebf2158b9f59b2ebe87917655ae1c5082fa4b11a26e2da"},
+    {file = "ezbee-0.1.3.tar.gz", hash = "sha256:01090f310ea564635a53f830465b4852b369e0af1991e709b216e378603fc278"},
 ]
 fast-scores = [
-    {file = "fast-scores-0.1.3a3.tar.gz", hash = "sha256:0a76f7f349ffbf507f7b1a2fd527be4a8bf633e36b7b9b45795192afd7aaac02"},
-    {file = "fast_scores-0.1.3a3-py3-none-any.whl", hash = "sha256:df4bdc93553b8fe4c513d7bf7473594634a8ec55695587beaa08bf2d3a5d5302"},
+    {file = "fast-scores-0.1.3.tar.gz", hash = "sha256:2e57014f43c59c37a1a06cb1d774baf6283b7c421a4ef3f4494b10e919e3a1dc"},
+    {file = "fast_scores-0.1.3-py3-none-any.whl", hash = "sha256:685c84026bf8a101d39a11f583780ec50a6341cd4e2745e368ddba8ef46a1b3b"},
 ]
 fastapi = [
     {file = "fastapi-0.88.0-py3-none-any.whl", hash = "sha256:263b718bb384422fe3d042ffc9a0c8dece5e034ab6586ff034f6b4b1667c3eee"},
     {file = "fastapi-0.88.0.tar.gz", hash = "sha256:915bf304180a0e7c5605ec81097b7d4cd8826ff87a02bb198e336fb9f3b5ff02"},
 ]
 fastlid = [
-    {file = "fastlid-0.1.8-py3-none-any.whl", hash = "sha256:65af15d56c3bbc2ca5e3804cd20fa989b697fc387ebd01834013a2c2d830107b"},
-    {file = "fastlid-0.1.8.tar.gz", hash = "sha256:996f5fa208ec0c67b21672822d4be6c05f59d7e5231f4c62ba79f96f108ae1c7"},
-]
-fasttext = [
-    {file = "fasttext-0.9.2.tar.gz", hash = "sha256:665556f1f6dcb4fcbe25fa8ebcd4f71b18fa96a090de09d88d97a60cbd29dcb5"},
+    {file = "fastlid-0.1.9-py3-none-any.whl", hash = "sha256:a1fc0b11dc79904f09f818e549436132df5a6d02d4c22224b1e1357d624f52e2"},
+    {file = "fastlid-0.1.9.tar.gz", hash = "sha256:7db4ee1c2d07604fe5218f7b0050b8f42086440be94244616956bbf9e5bb57e1"},
 ]
 h11 = [
     {file = "h11-0.14.0-py3-none-any.whl", hash = "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"},
@@ -1091,8 +1064,8 @@ pluggy = [
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
 ]
 pybind11 = [
-    {file = "pybind11-2.10.1-py3-none-any.whl", hash = "sha256:ebf3eeac46859a2e10077ae45378ba3f33d999a9064697a3464fba1a4a04fc0a"},
-    {file = "pybind11-2.10.1.tar.gz", hash = "sha256:c9571b8a6607c8e90ea156a2a455383b9911f89da414e9f5e251ab58dc3e3c71"},
+    {file = "pybind11-2.10.2-py3-none-any.whl", hash = "sha256:51507b4bcb2ce078fcc548e5ba46e9461f9706333fb75ad4ec6ee3ac375a6766"},
+    {file = "pybind11-2.10.2.tar.gz", hash = "sha256:26db33c5080a9d8adb38f088cd22eef0dfb5c33acc46d18ec7d37885d32848c7"},
 ]
 pydantic = [
     {file = "pydantic-1.10.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:bb6ad4489af1bac6955d38ebcb95079a836af31e4c4f74aba1ca05bb9f6027bd"},
@@ -1333,10 +1306,6 @@ scipy = [
 set-loglevel = [
     {file = "set_loglevel-0.1.2-py3-none-any.whl", hash = "sha256:fcfe76ccd3791511e2cb51ec11ded6cc2186a727e441a934c547a211d0fdf773"},
     {file = "set_loglevel-0.1.2.tar.gz", hash = "sha256:4da23414a798cea918801b113e17af092f13ccda96345203b14042b6d6d3a896"},
-]
-setuptools = [
-    {file = "setuptools-65.6.3-py3-none-any.whl", hash = "sha256:57f6f22bde4e042978bcd50176fdb381d7c21a9efa4041202288d3737a0c6a54"},
-    {file = "setuptools-65.6.3.tar.gz", hash = "sha256:a7620757bf984b58deaf32fc8a4577a9bbc0850cf92c20e1ce41c38c19e5fb75"},
 ]
 simplemma = [
     {file = "simplemma-0.3.0-py3-none-any.whl", hash = "sha256:fcd30d4c0919257f38181d7f3f7e4a8806b7aa7cc4434b96276cf03179d4cc98"},

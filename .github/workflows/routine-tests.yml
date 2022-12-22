@@ -25,8 +25,8 @@ jobs:
       - name: Extra install for linux and non-linux
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
-            poetry run pip install data\\artifects\\pycld2-0.41-cp38-cp38-win_amd64.whl
-            poetry run pip install data\\artifects\\PyICU-2.8.1-cp38-cp38-win_amd64.whl
+            poetry run pip install https://github.com/ffreemt/ezbee/raw/main/data/artifects/pycld2-0.41-cp38-cp38-win_amd64.whl
+            poetry run pip install https://github.com/ffreemt/ezbee/raw/main/data/artifects/PyICU-2.8.1-cp38-cp38-win_amd64.whl
           elif [ "$RUNNER_OS" == "macOS" ]; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
             brew install icu4c

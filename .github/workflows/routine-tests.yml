@@ -51,7 +51,7 @@ jobs:
           # poetry run pip install flake8 pytest
       - name: Run flake8
         run: |
-          poetry run flake8 dezrest --exit-zero
+          poetry run flake8 dezrest --exit-zero  --ignore F401,E501
           # poetry run pytest
       - name: Run pytest
         run: poetry run pytest tests

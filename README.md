@@ -1,28 +1,10 @@
 # dezbee-rest
 [![pytest](https://github.com/ffreemt/dezbee-rest/actions/workflows/routine-tests.yml/badge.svg)](https://github.com/ffreemt/dezbee-rest/actions)[![python](https://img.shields.io/static/v1?label=python+&message=3.8&color=blue)](https://www.python.org/downloads/)[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![PyPI version](https://badge.fury.io/py/dezrest.svg)](https://badge.fury.io/py/dezrest)
 
-Serve ezbee via FastAPI port 6666
-
-## python 3.8 only
-[de|dz]bee may be supported later
-
-## Pre-install for Windows without C++ environment
-Skip this step if your system has C++, e.g., Visual Studio or mingw or g++ etc.
-
-* fasttext
-  * `pip install fasttext` (linux) or `pip install fasttext*whl` (Windows)
-* pycld2, PyICU
-  * e.g. `poetry run pip install pycld2-0.41-cp38-cp38-win_amd64.wh PyICU-2.9-cp38-cp38-win_amd64.whl`
-* polyglot fix:
-  * `poetry run pip install -U git+https://github.com/aboSamoor/polyglot.git@master` or
-  *  `pip install artifects\polyglot-16.7.4.tar.gz` (modified cloned polyglot: futures removed from requirements.txt)
-* scikit-learn (for deprecated sklearn used in some packages) and pybind11 (for Windows)
-
-Refer to [workflows](https://github.com/ffreemt/dezbee-rest/blob/main/.github/workflows/routine-tests.yml)
+Serve ezbee via FastAPI port 5555 ([de|dz]bee may be supported later)
 
 ## Install it (Python 3.8 only)
 
-##
 ```shell
 pip install dezrest
 

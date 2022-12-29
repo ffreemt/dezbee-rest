@@ -118,6 +118,7 @@ async def hello_world():
 
 class ThreeCols(BaseModel):
     """Define response_model (not used)."""
+
     __root__: List[Tuple[str, str, Union[str, float]]]
 
 
@@ -127,6 +128,7 @@ class ThreeCols(BaseModel):
 
 class Inputs(BaseModel):
     """Define request body (not used)."""
+
     texts: Tuple[str, str]
     split2sents: Union[bool, None] = None
 

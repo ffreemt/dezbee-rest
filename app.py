@@ -1,4 +1,4 @@
-r"""```bash 
+r"""```bash
 Serve ezbee via post port default 5555
 In: [str, str]
 Out: List[Tuple[str, str, str]]
@@ -78,7 +78,7 @@ async def hello_world():
     # ic(request)
     # ic(request.args)
     # return text("Hello, world.")
-    return {"greeting": "Hello from dezbee-rest"}
+    return {"greetings": "Hello from dezbee-rest"}
 
 
 class Texts(BaseModel):
@@ -98,38 +98,38 @@ class ThreeCols(BaseModel):
 @app.post("/post/", response_model=List[Tuple[str, str, str]])
 def on_post(texts: Tuple[str, str]):
     """Deliver aligned pairs.
-    
+
     ```
     Request body: [str, str]
-    
+
     Response model: List[Tuple[str, str, str]]
     """
     # logger.debug(" d texts: %s", texts)
-    
+
     text1, text2 = texts
     lists = text1.splitlines(), text2.splitlines()
-    
+
     # list1, list2 = text1.splitlines(), text2.splitlines()
     # logger.debug("type(list1): %s, list1[:5]: %s", type(list1), list1[:5])
     # logger.debug("type(list2): %s, list2[:5]: %s", type(list2), list2[:5])
-    
+
     # aset = ezbee(lines1, lines2)
     # aset = ezbee(list1, list2)
-    
+
     aset = ezbee(*lists)
-    
+
     logzero.loglevel(set_loglevel())
     if aset:
         logger.debug("aset: %s...%s", aset[:4], aset[-4:])
         # logger.debug("aset: %s", aset)
-        
+
     # aligned_pairs = gen_pairs(list1, list2, aset)
     aligned_pairs = gen_pairs(*lists, aset)
-    
+
     logger.debug("aligned_pairs[:10]: %s", aligned_pairs[:10])
-    
+
     return aligned_pairs
-    
+
     _ = """
     return [
         ['a', 'b', ''],

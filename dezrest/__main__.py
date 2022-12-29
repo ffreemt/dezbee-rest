@@ -35,6 +35,13 @@ httpx.post("http://127.0.0.1:5555/post/", json=['test\nlove', '没有\n测试\n�
 httpx.post("http://127.0.0.1:5555/post/", json=['test\nlove', '没有\n测试\n其他\n爱']).json()
 # Out: [['', '没有', ''], ['test', '测试', '0.75'], ['', '其他', ''], ['love', '爱', '0.87']]
 ```
+Modify API to take `split2sents` parameter
+```
+httpx.post("http://127.0.0.1:5555/post/", json={"texts": ['test\nlove', '没有\n测试\n其他\n爱',]}).json()
+httpx.post("http://127.0.0.1:5555/post/",
+    json={"texts": ['test\nlove', '没有\n测试\n其他\n爱',], "split2sents": True}).json()
+# Out: [['', '没有', ''], ['test', '测试', '0.75'], ['', '其他', ''], ['love', '爱', '0.87']]
+```
 """
 # pylint: disable=invalid-name, too-few-public-methods
 # sanic sanic-app:app or sanic sanic-app.app
@@ -59,6 +66,7 @@ from ezbee.save_xlsx_tsv_csv import save_xlsx_tsv_csv
 from fastapi import FastAPI
 from logzero import logger
 from pydantic import BaseModel
+from seg_text import seg_text
 from set_loglevel import set_loglevel
 
 from dezrest import __version__
@@ -105,20 +113,11 @@ async def hello_world():
     # ic(request)
     # ic(request.args)
     # return text("Hello, world.")
-    return {"greeting": "Hello from dezbee-rest"}
-
-
-class Texts(BaseModel):
-    """Define request body (not used)."""
-
-    # text1: str
-    # text2: str
-    __root__: Tuple[str, str]
+    return {"greetings": "Hello from dezbee-rest"}
 
 
 class ThreeCols(BaseModel):
     """Define response_model (not used)."""
-
     __root__: List[Tuple[str, str, Union[str, float]]]
 
 
@@ -126,19 +125,27 @@ class ThreeCols(BaseModel):
 # def on_post(texts: Texts):
 
 
+class Inputs(BaseModel):
+    """Define request body (not used)."""
+    texts: Tuple[str, str]
+    split2sents: Union[bool, None] = None
+
+
 @app.post("/post/", response_model=List[Tuple[str, str, str]])
-def on_post(texts: Tuple[str, str]):
+# def on_post(inputs: Tuple[str, str, bool]):  # text1, text2, splitToSents
+def on_post(inputs: Inputs):  # text1, text2, splitToSents
     """Deliver aligned pairs.
 
     ```
-    Request body: [str, str]
+    Request body: [str, str, bool]
 
     Response model: List[Tuple[str, str, str]]
     """
     # logger.debug(" d texts: %s", texts)
 
-    text1, text2 = texts
-    lists = text1.splitlines(), text2.splitlines()
+    # text1, text2, split2sents = inputs
+    text1, text2 = inputs.texts
+    list1, list2 = text1.splitlines(), text2.splitlines()
 
     # list1, list2 = text1.splitlines(), text2.splitlines()
     # logger.debug("type(list1): %s, list1[:5]: %s", type(list1), list1[:5])
@@ -147,7 +154,11 @@ def on_post(texts: Tuple[str, str]):
     # aset = ezbee(lines1, lines2)
     # aset = ezbee(list1, list2)
 
-    aset = ezbee(*lists)
+    if inputs.split2sents:
+        list1 = seg_text(list1)
+        list2 = seg_text(list2)
+
+    aset = ezbee(list1, list2)
 
     logzero.loglevel(set_loglevel())
     if aset:
@@ -155,7 +166,7 @@ def on_post(texts: Tuple[str, str]):
         # logger.debug("aset: %s", aset)
 
     # aligned_pairs = gen_pairs(list1, list2, aset)
-    aligned_pairs = gen_pairs(*lists, aset)
+    aligned_pairs = gen_pairs(list1, list2, aset)
 
     logger.debug("aligned_pairs[:5]: %s", aligned_pairs[:5])
 

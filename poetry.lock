@@ -546,6 +546,48 @@ doc = ["matplotlib (>2)", "numpydoc", "pydata-sphinx-theme (==0.9.0)", "sphinx (
 test = ["asv", "gmpy2", "mpmath", "pytest", "pytest-cov", "pytest-xdist", "scikit-umfpack", "threadpoolctl"]
 
 [[package]]
+name = "seg-text"
+version = "0.1.2"
+description = "pack_name descr "
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+fastlid = ">=0.1.7,<0.2.0"
+icecream = ">=2.1.1,<3.0.0"
+install = ">=1.3.5,<2.0.0"
+logzero = ">=1.7.0,<2.0.0"
+Morfessor = "2.0.6"
+numpy = ">=1.22.2,<2.0.0"
+sentence-splitter = ">=1.4,<2.0"
+tqdm = ">=4.62.3,<5.0.0"
+vtext = ">=0.2.0,<0.3.0"
+
+[[package]]
+name = "semantic-version"
+version = "2.10.0"
+description = "A library implementing the 'SemVer' scheme."
+category = "main"
+optional = false
+python-versions = ">=2.7"
+
+[package.extras]
+dev = ["Django (>=1.11)", "check-manifest", "colorama (<=0.4.1)", "coverage", "flake8", "nose2", "readme-renderer (<25.0)", "tox", "wheel", "zest.releaser[recommended]"]
+doc = ["Sphinx", "sphinx-rtd-theme"]
+
+[[package]]
+name = "sentence-splitter"
+version = "1.4"
+description = "Text to sentence splitter using heuristic algorithm by Philipp Koehn and Josh Schroeder"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+regex = ">=2017.12.12"
+
+[[package]]
 name = "set-loglevel"
 version = "0.1.2"
 description = "Return a loglevel (10, 20, etc.) taking ENV LOGLEVEL into account"
@@ -556,6 +598,32 @@ python-versions = ">=3.8.3,<4.0.0"
 [package.dependencies]
 environs = ">=9.5.0,<10.0.0"
 logzero = ">=1.7.0,<2.0.0"
+
+[[package]]
+name = "setuptools"
+version = "65.6.3"
+description = "Easily download, build, install, upgrade, and uninstall Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-favicon", "sphinx-hoverxref (<2)", "sphinx-inline-tabs", "sphinx-notfound-page (==0.8.3)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
+testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8 (<5)", "flake8-2020", "ini2toml[lite] (>=0.9)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pip (>=19.1)", "pip-run (>=8.8)", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=1.3)", "pytest-flake8", "pytest-mypy (>=0.9.1)", "pytest-perf", "pytest-timeout", "pytest-xdist", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
+testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
+
+[[package]]
+name = "setuptools-rust"
+version = "1.5.2"
+description = "Setuptools Rust extension plugin"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+semantic-version = ">=2.8.2,<3"
+setuptools = ">=62.4"
+typing-extensions = ">=3.7.4.3"
 
 [[package]]
 name = "simplemma"
@@ -698,6 +766,20 @@ docs = ["Sphinx (>=4.1.2,<4.2.0)", "sphinx-rtd-theme (>=0.5.2,<0.6.0)", "sphinxc
 test = ["Cython (>=0.29.32,<0.30.0)", "aiohttp", "flake8 (>=3.9.2,<3.10.0)", "mypy (>=0.800)", "psutil", "pyOpenSSL (>=22.0.0,<22.1.0)", "pycodestyle (>=2.7.0,<2.8.0)"]
 
 [[package]]
+name = "vtext"
+version = "0.2.0"
+description = "Natural Language Processing in Rust with Python bidings"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+numpy = ">=1.15.0"
+scipy = ">=1.1.0"
+setuptools = "*"
+setuptools-rust = ">=0.10.2"
+
+[[package]]
 name = "watchfiles"
 version = "0.18.1"
 description = "Simple, modern and high performance file watching and code reload in python."
@@ -727,7 +809,7 @@ python-versions = ">=3.4"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8.3"
-content-hash = "be1bd3011f9d6ef72ca8ffa46a92467389d30b3b1602bab637c0f0e81ec0cd34"
+content-hash = "0c6a560576511b5ed17b82d535f7b041d4358955956d3a9483c87f33602b4724"
 
 [metadata.files]
 anyio = [
@@ -1303,9 +1385,29 @@ scipy = [
     {file = "scipy-1.9.3-cp39-cp39-win_amd64.whl", hash = "sha256:5b88e6d91ad9d59478fafe92a7c757d00c59e3bdc3331be8ada76a4f8d683f58"},
     {file = "scipy-1.9.3.tar.gz", hash = "sha256:fbc5c05c85c1a02be77b1ff591087c83bc44579c6d2bd9fb798bb64ea5e1a027"},
 ]
+seg-text = [
+    {file = "seg_text-0.1.2-py3-none-any.whl", hash = "sha256:9e67af219b81259d916a11708799ef52bb7d765f9d8010028dd8d48e053eda17"},
+    {file = "seg_text-0.1.2.tar.gz", hash = "sha256:37332d6fa755659aba3d93faa1248242c56a5a84e1f9332990802226ad9c4ca8"},
+]
+semantic-version = [
+    {file = "semantic_version-2.10.0-py2.py3-none-any.whl", hash = "sha256:de78a3b8e0feda74cabc54aab2da702113e33ac9d9eb9d2389bcf1f58b7d9177"},
+    {file = "semantic_version-2.10.0.tar.gz", hash = "sha256:bdabb6d336998cbb378d4b9db3a4b56a1e3235701dc05ea2690d9a997ed5041c"},
+]
+sentence-splitter = [
+    {file = "sentence_splitter-1.4-py2.py3-none-any.whl", hash = "sha256:5645a3ad9c348e4287f4bc73bd573d92dccd4139042fddd51fff0591f1376763"},
+    {file = "sentence_splitter-1.4.tar.gz", hash = "sha256:3d1d773d07cc733ca2955aa87d0fa1c0a7274c6bdeec1daac5c5e92efb512f63"},
+]
 set-loglevel = [
     {file = "set_loglevel-0.1.2-py3-none-any.whl", hash = "sha256:fcfe76ccd3791511e2cb51ec11ded6cc2186a727e441a934c547a211d0fdf773"},
     {file = "set_loglevel-0.1.2.tar.gz", hash = "sha256:4da23414a798cea918801b113e17af092f13ccda96345203b14042b6d6d3a896"},
+]
+setuptools = [
+    {file = "setuptools-65.6.3-py3-none-any.whl", hash = "sha256:57f6f22bde4e042978bcd50176fdb381d7c21a9efa4041202288d3737a0c6a54"},
+    {file = "setuptools-65.6.3.tar.gz", hash = "sha256:a7620757bf984b58deaf32fc8a4577a9bbc0850cf92c20e1ce41c38c19e5fb75"},
+]
+setuptools-rust = [
+    {file = "setuptools-rust-1.5.2.tar.gz", hash = "sha256:d8daccb14dc0eae1b6b6eb3ecef79675bd37b4065369f79c35393dd5c55652c7"},
+    {file = "setuptools_rust-1.5.2-py3-none-any.whl", hash = "sha256:8eb45851e34288f2296cd5ab9e924535ac1757318b730a13fe6836867843f206"},
 ]
 simplemma = [
     {file = "simplemma-0.3.0-py3-none-any.whl", hash = "sha256:fcd30d4c0919257f38181d7f3f7e4a8806b7aa7cc4434b96276cf03179d4cc98"},
@@ -1381,6 +1483,18 @@ uvloop = [
     {file = "uvloop-0.17.0-cp39-cp39-musllinux_1_1_aarch64.whl", hash = "sha256:c092a2c1e736086d59ac8e41f9c98f26bbf9b9222a76f21af9dfe949b99b2eb9"},
     {file = "uvloop-0.17.0-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:30babd84706115626ea78ea5dbc7dd8d0d01a2e9f9b306d24ca4ed5796c66ded"},
     {file = "uvloop-0.17.0.tar.gz", hash = "sha256:0ddf6baf9cf11a1a22c71487f39f15b2cf78eb5bde7e5b45fbb99e8a9d91b9e1"},
+]
+vtext = [
+    {file = "vtext-0.2.0-cp36-cp36m-macosx_10_14_x86_64.whl", hash = "sha256:1791aad4a999525a7c19ae25ffdeb491839e81e958995567151a3bf8012c32ff"},
+    {file = "vtext-0.2.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:7ddde99b3153f7bf439b06f69f221c59945b1ce103368ce3a4957e7112ab904b"},
+    {file = "vtext-0.2.0-cp36-cp36m-win_amd64.whl", hash = "sha256:c54d2b4496afa0d8687345b2b89bed7e9aa03b223f0dc58ac923348d0f879a2c"},
+    {file = "vtext-0.2.0-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:397823cda22d04de43312e27cbe74be4318c20ec2ef38df9c66493580be06ec8"},
+    {file = "vtext-0.2.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:be3d75845af06d92af9fb65dde8c37ea890f8ed00bb236884fe3b8e2c4b08e32"},
+    {file = "vtext-0.2.0-cp37-cp37m-win_amd64.whl", hash = "sha256:1fa5b18b31637ce012fdfddb1c6a207989320bcf246d5f131695c9fc92b2a32c"},
+    {file = "vtext-0.2.0-cp38-cp38-macosx_10_14_x86_64.whl", hash = "sha256:c7a7826a44b81e9d1779bc800a5ee133647c7943c52b434ae8415df18933f77f"},
+    {file = "vtext-0.2.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:eb37f4b72cf754ff20323f11519da9d3864c7f0a428be847da2ed55a3665cc44"},
+    {file = "vtext-0.2.0-cp38-cp38-win_amd64.whl", hash = "sha256:02c1dbefd2b6fd3522a96a9bd8f8e85ae4722ee088e2d952bbec830b0e88727c"},
+    {file = "vtext-0.2.0.tar.gz", hash = "sha256:0ce1b0bb7e1cc0adcf5c8064757adaa6ea7bf52e366a3d30d2eac0588145f0e6"},
 ]
 watchfiles = [
     {file = "watchfiles-0.18.1-cp37-abi3-macosx_10_7_x86_64.whl", hash = "sha256:9891d3c94272108bcecf5597a592e61105279def1313521e637f2d5acbe08bc9"},

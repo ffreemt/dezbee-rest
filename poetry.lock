@@ -408,14 +408,14 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "pybind11"
-version = "2.10.2"
+version = "2.10.1"
 description = "Seamless operability between C++11 and Python"
 category = "main"
 optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-global = ["pybind11-global (==2.10.2)"]
+global = ["pybind11-global (==2.10.1)"]
 
 [[package]]
 name = "pydantic"
@@ -1146,8 +1146,8 @@ pluggy = [
     {file = "pluggy-1.0.0.tar.gz", hash = "sha256:4224373bacce55f955a878bf9cfa763c1e360858e330072059e10bad68531159"},
 ]
 pybind11 = [
-    {file = "pybind11-2.10.2-py3-none-any.whl", hash = "sha256:51507b4bcb2ce078fcc548e5ba46e9461f9706333fb75ad4ec6ee3ac375a6766"},
-    {file = "pybind11-2.10.2.tar.gz", hash = "sha256:26db33c5080a9d8adb38f088cd22eef0dfb5c33acc46d18ec7d37885d32848c7"},
+    {file = "pybind11-2.10.1-py3-none-any.whl", hash = "sha256:ebf3eeac46859a2e10077ae45378ba3f33d999a9064697a3464fba1a4a04fc0a"},
+    {file = "pybind11-2.10.1.tar.gz", hash = "sha256:c9571b8a6607c8e90ea156a2a455383b9911f89da414e9f5e251ab58dc3e3c71"},
 ]
 pydantic = [
     {file = "pydantic-1.10.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:bb6ad4489af1bac6955d38ebcb95079a836af31e4c4f74aba1ca05bb9f6027bd"},
